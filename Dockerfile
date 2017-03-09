@@ -7,7 +7,7 @@ MAINTAINER Heinz N. Gies <heinz@project-fifo.net>
 ##
 ###################
 
-ENV DP_VSN=0.3.1p3
+ENV DP_VSN=0.3.1p4
 ENV DP_PATH=/ddb_proxy
 ENV DP_REF=$DP_VSN
 
