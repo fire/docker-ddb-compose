@@ -26,7 +26,7 @@ RUN cd / \
     && mkdir -p /data/dalmatinerfe/log \
     && cp $DFE_PATH/etc/dalmatinerfe.conf.example /data/dalmatinerfe/etc/dalmatinerfe.conf \
     && echo "none() -> drop." > /data/dalmatinerfe/etc/rules.ot \
-    && sed -i -e '/RUNNER_USER=dalmatiner/d' $DFE_PATH/bin/dalmatinerfe \
+    && sed -i -e '/RUNNER_USER=/d' $DFE_PATH/bin/dalmatinerfe \
     && sed -i -e 's/idx.backend = dqe_idx_ddb/idx.backend = dqe_idx_pg/' /data/dalmatinerfe/etc/dalmatinerfe.conf
 
 COPY dfe.sh /
