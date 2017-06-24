@@ -7,7 +7,7 @@ MAINTAINER Heinz N. Gies <heinz@project-fifo.net>
 ##
 ###################
 
-ENV DP_VSN=0.3.2p1
+ENV DP_VSN=0.3.2p2
 ENV DP_PATH=/dpx
 
 RUN cd / \
