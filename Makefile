@@ -1,2 +1,2 @@
 all:
-	docker build -t dfe:test .
+	docker build -t dfe:latest .
