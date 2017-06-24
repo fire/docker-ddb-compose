@@ -15,8 +15,8 @@ RUN cd / \
 
 Run cd dalmatiner-frontend.git \
     && env GIT_SSL_NO_VERIFY=true git checkout $DFE_VSN \
-    && ./rebar3 as smartos release \
-    && mv /dalmatiner-frontend.git/_build/smartos/rel/dalmatinerfe $DFE_PATH \
+    && make rel \
+    && mv /dalmatiner-frontend.git/_build/prod/rel/dalmatinerfe $DFE_PATH \
     && rm -rf /dalmatiner-frontend.git \
     && rm -rf $DFE_PATH/lib/*/c_src
 
