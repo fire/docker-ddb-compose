@@ -7,7 +7,7 @@ MAINTAINER Heinz N. Gies <heinz@project-fifo.net>
 ##
 ###################
 
-ENV DP_VSN=0.3.2p2
+ENV DP_VSN=0.3.2p4
 ENV DP_PATH=/dpx
 
 RUN cd / \
@@ -38,9 +38,7 @@ RUN mkdir -p /data/dalmatinerpx/db \
     && echo "listeners.dp_prom_writer.bucket = promwriter" >> /data/dalmatinerpx/etc/dalmatinerpx.conf \
     && echo "listeners.dp_prom_writer.port = 1234" >> /data/dalmatinerpx/etc/dalmatinerpx.conf \
     && echo "listeners.dp_prom_writer.protocol = http" >> /data/dalmatinerpx/etc/dalmatinerpx.conf \
-    && sed -i -e '/RUNNER_USER=/d' $DP_PATH/bin/dalmatinerpx \
-    && sed -i -e '/RUNNER_USER=/d' $DP_PATH/bin/dpx
-
+    && sed -i -e '/RUNNER_USER=/d' $DP_PATH/bin/dalmatinerpx
 
 COPY ddb_proxy.sh /
 
