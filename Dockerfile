@@ -7,17 +7,16 @@ MAINTAINER Heinz N. Gies <heinz@project-fifo.net>
 ##
 ###################
 
-ENV DFE_VSN=test
+ENV DFE_VSN=0.3.2p1
 ENV DFE_PATH=/dalmatinerfe
-ENV DFE_REF=04bdf54
 
 RUN cd / \
     && env GIT_SSL_NO_VERIFY=true git clone http://github.com/dalmatinerdb/dalmatiner-frontend.git dalmatiner-frontend.git
 
 Run cd dalmatiner-frontend.git \
     && env GIT_SSL_NO_VERIFY=true git checkout $DFE_VSN \
-    && make rel \
-    && mv /dalmatiner-frontend.git/_build/prod/rel/dalmatinerfe $DFE_PATH \
+    && ./rebar3 as smartos release \
+    && mv /dalmatiner-frontend.git/_build/smartos/rel/dalmatinerfe $DFE_PATH \
     && rm -rf /dalmatiner-frontend.git \
     && rm -rf $DFE_PATH/lib/*/c_src
 
