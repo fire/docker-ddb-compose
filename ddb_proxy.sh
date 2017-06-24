@@ -14,5 +14,5 @@ sed -i \
 
 LOG=/data/dalmatinerpx/log/console.log
 > $LOG
-/dpx/bin/dpx start
+/dpx/bin/dalmatinerpx start
 tail -n 1024 -f $LOG

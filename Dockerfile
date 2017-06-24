@@ -38,7 +38,8 @@ RUN mkdir -p /data/dalmatinerpx/db \
     && echo "listeners.dp_prom_writer.bucket = promwriter" >> /data/dalmatinerpx/etc/dalmatinerpx.conf \
     && echo "listeners.dp_prom_writer.port = 1234" >> /data/dalmatinerpx/etc/dalmatinerpx.conf \
     && echo "listeners.dp_prom_writer.protocol = http" >> /data/dalmatinerpx/etc/dalmatinerpx.conf \
-    && sed -i -e '/RUNNER_USER=dalmatiner/d' $DP_PATH/bin/dalmatinerpx
+    && sed -i -e '/RUNNER_USER=/d' $DP_PATH/bin/dalmatinerpx \
+    && sed -i -e '/RUNNER_USER=/d' $DP_PATH/bin/dpx
 
 
 COPY ddb_proxy.sh /
