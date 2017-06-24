@@ -7,9 +7,9 @@ MAINTAINER Heinz N. Gies <heinz@project-fifo.net>
 ##
 ###################
 
-ENV DFE_VSN=0.3.1p1
+ENV DFE_VSN=test
 ENV DFE_PATH=/dalmatinerfe
-ENV DFE_REF=$DFE_VSN
+ENV DFE_REF=04bdf54
 
 RUN cd / \
     && env GIT_SSL_NO_VERIFY=true git clone http://github.com/dalmatinerdb/dalmatiner-frontend.git dalmatiner-frontend.git
@@ -26,6 +26,7 @@ RUN cd / \
     && mkdir -p /data/dalmatinerfe/db \
     && mkdir -p /data/dalmatinerfe/log \
     && cp $DFE_PATH/etc/dalmatinerfe.conf.example /data/dalmatinerfe/etc/dalmatinerfe.conf \
+    && echo "none() -> drop." > /data/dalmatinerfe/etc/rules.ot \
     && sed -i -e '/RUNNER_USER=dalmatiner/d' $DFE_PATH/bin/dalmatinerfe \
     && sed -i -e 's/idx.backend = dqe_idx_ddb/idx.backend = dqe_idx_pg/' /data/dalmatinerfe/etc/dalmatinerfe.conf
 
