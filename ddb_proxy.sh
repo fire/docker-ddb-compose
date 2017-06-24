@@ -3,7 +3,7 @@ set -e
 
 set -x
 
-CONF=/data/ddb_proxy/etc/ddb_proxy.conf
+CONF=/data/dalmatinerpx/etc/dalmatinerpx.conf
 
 export DB_HOST=$(ping -c1 $DB_NODE | awk '/^PING/ {print $3}' | sed 's/[():]//g')||'127.0.0.1'
 
@@ -12,7 +12,7 @@ sed -i \
     -e "s/^idx.pg.backend_host = .*/idx.pg.backend_host = ${PG_NODE}/" \
     $CONF
 
-LOG=/data/ddb_proxy/log/console.log
+LOG=/data/dalmatinerpx/log/console.log
 > $LOG
-/ddb_proxy/bin/ddb_proxy start
+/dpx/bin/dpx start
 tail -n 1024 -f $LOG
