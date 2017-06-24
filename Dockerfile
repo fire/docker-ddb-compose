@@ -7,9 +7,9 @@ MAINTAINER Heinz N. Gies <heinz@project-fifo.net>
 ##
 ###################
 
-ENV DP_VSN=0.3.1p4
+ENV DP_VSN=test
 ENV DP_PATH=/ddb_proxy
-ENV DP_REF=$DP_VSN
+ENV DP_REF=c1a04e5
 
 RUN cd / \
     && env GIT_SSL_NO_VERIFY=true git clone -b $DP_VSN http://github.com/dalmatinerdb/ddb_proxy.git ddb_proxy.git
