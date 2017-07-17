@@ -7,7 +7,7 @@ MAINTAINER Heinz N. Gies <heinz@project-fifo.net>
 ##
 ###################
 
-ENV DFE_VSN=0.3.2p1
+ENV DFE_VSN=0.3.2p2
 ENV DFE_PATH=/dalmatinerfe
 
 RUN cd / \
