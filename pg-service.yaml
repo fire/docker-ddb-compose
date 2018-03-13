@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: D:\Projects\docker-ddb-kubernetes\kompose-windows-amd64.exe convert
+      --controller daemonSet -f .\docker-compose.yml
+    kompose.version: 1.10.0 (8bb0907)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: pg
+  name: pg
+spec:
+  clusterIP: None
+  ports:
+  - name: headless
+    port: 55555
+    targetPort: 0
+  selector:
+    io.kompose.service: pg
+status:
+  loadBalancer: {}
