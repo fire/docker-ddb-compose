@@ -17,11 +17,11 @@ spec:
         io.kompose.service: pg
     spec:
       containers:
-      - image: projectfifo/metric_metadata
+      - image: centos/postgresql-95-centos7
         name: pg
         resources: {}      
         volumeMounts:
-          - mountPath: /var/lib/postgresql/data
+          - mountPath: /var/lib/pgsql/data
             name: data
         restartPolicy: Always
         volumes:
