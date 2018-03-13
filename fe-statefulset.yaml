@@ -31,8 +31,26 @@ spec:
         name: fe
         ports:
         - containerPort: 8080
-        resources: {}
+        resources: {}     
+        volumeMounts:
+          - mountPath: "/data"
+            name: data
       restartPolicy: Always
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: frontend-data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        annotations:
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+            storage: 1Gi
 status:
   currentNumberScheduled: 0
   desiredNumberScheduled: 0

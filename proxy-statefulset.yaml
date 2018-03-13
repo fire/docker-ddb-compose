@@ -33,8 +33,25 @@ spec:
         - containerPort: 4242
         - containerPort: 9999
         - containerPort: 1234
-        resources: {}
+        resources: {}       
+        volumeMounts:
+          - mountPath: "/data"
+            name: data
       restartPolicy: Always
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: proxy-data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        annotations:
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
 status:
   currentNumberScheduled: 0
   desiredNumberScheduled: 0
