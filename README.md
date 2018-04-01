@@ -44,3 +44,13 @@ Go to [Grafana](http://localhost:3000) and log in with `admin` / `admin`. Go to 
 # Getting Data
 
 The quickest way to get some data to display is to use [telegraf](https://docs.influxdata.com/telegraf/v1.2/) and point it to `http://localhost:8086` (default for new installations).
+
+# Installing using ansible container
+
+
+```
+sudo git clone https://github.com/ansible/ansible-container.git -b develop
+sudo pip install .[docker,openshift]
+sudo ansible-container build
+sudo ansible-container push --username=ifire --push-to docker
+```
