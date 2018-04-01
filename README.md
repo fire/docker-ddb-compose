@@ -50,7 +50,7 @@ The quickest way to get some data to display is to use [telegraf](https://docs.i
 
 ```
 sudo git clone https://github.com/ansible/ansible-container.git -b develop
-sudo pip install .[docker,openshift]
+sudo pip install -e .[docker,openshift]
 sudo ansible-container build
 sudo ansible-container push --username=ifire --push-to docker
 ```

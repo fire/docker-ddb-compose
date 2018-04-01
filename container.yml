@@ -1,13 +1,12 @@
 version: "2"
 settings:
-
   conductor:
     # The Conductor container does the heavy lifting, and provides a portable
     # Python runtime for building your target containers. It should be derived
     # from the same distribution as you're building your target containers with.
-    base: centos:7
-    roles_path: 
-      - roles
+    base: "centos:7"
+    roles_path:
+      - "roles"
     # roles_path:   # Specify a local path containing Ansible roles
     # volumes:      # Provide a list of volumes to mount
     # environment:  # List or mapping of environment variables
@@ -50,7 +49,7 @@ settings:
   #  display_name:
   k8s_namespace:
     name: dalmatinerdb
-    description: 
+    description: Dalmatiner time series store
     display_name: Dalmatiner Database
 
 services:
