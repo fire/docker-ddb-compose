@@ -56,4 +56,4 @@
 - command: echo "none() -> drop." > /data/dalmatinerdb/etc/rules.ot 
 - command: sed -i -e '/RUNNER_USER=/d' /dalmatinerdb/bin/ddb
 - command: sed -i -e '/RUNNER_USER=/d' /dalmatinerdb/bin/ddb-admin
-- copy: src=/dalmatinerdb/etc/ddb.conf dest=/data/dalmatinerdb/etc/ddb.conf force=no
+- command: yes | cp /dalmatinerdb/etc/ddb.conf /data/dalmatinerdb/etc/ddb.conf
