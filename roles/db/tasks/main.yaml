@@ -34,7 +34,12 @@
     path: /dalmatinerdb
     state: absent
 - command: mv /usr/local/src/dalmatinerdb/_build/smartos/rel/ddb/ /dalmatinerdb/
-- command: rm -rf /usr/local/src/dalmatinerdb && rm -rf ~/.hex
+- file:
+    path: /usr/local/src/dalmatinerd
+    state: absent
+- file:
+    path: ~/.hex
+    state: absent
 - file:
     path: /data/dalmatinerdb/etc/
     state: directory
