@@ -57,6 +57,7 @@ services:
     from: "centos:7"
     roles:
       - prepare
+      - erlang
     dev_overrides:
       environment:
         - "DEBUG=1"
@@ -64,6 +65,7 @@ services:
     from: "centos:7"
     roles:
       - prepare
+      - erlang
     dev_overrides:
       environment:
         - "DEBUG=1"
@@ -71,6 +73,7 @@ services:
     from: "centos:7"
     roles:
       - prepare
+      - erlang
     dev_overrides:
       environment:
         - "DEBUG=1"
