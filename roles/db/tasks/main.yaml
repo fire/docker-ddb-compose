@@ -1,0 +1,33 @@
+- apt:
+    name: git
+    state: latest
+- apt:
+    name: glibc-devel
+    state: latest
+- apt:
+    name: glibc-devel
+    state: latest
+- command: apt install -y build-essentials
+- name: Checkout ddb
+  git:
+    repo: 'https://github.com/dalmatinerdb/dalmatinerdb.git'
+    dest: /usr/local/src/dalmatinerdb
+    version: dev
+- command: cd /usr/local/src/dalmatinerdb && ./rebar3 as smartos release && make
+- command: mkdir -p /dalmatinerdb
+- command: mv /usr/local/src/dalmatinerdb/_build/smartos/rel/ddb /dalmatinerdb/
+- command: rm -rf /usr/local/src/dalmatinerdb && rm -rf ~/.hex
+- template:
+    src: template/ddb.sh
+    dest: /ddb.sh
+    owner: root
+    group: root
+    mode: 0644
+# create volume for /data/dalmatinerdb/etc
+# create volume for /data/dalmatinerdb/db
+# create volume for /data/dalmatinerdb/log
+# If not exist copy $DDB_PATH/etc/dalmatinerdb.conf /data/dalmatinerdb/etc/dalmatinerdb.conf \
+#    && echo "none() -> drop." > /data/dalmatinerdb/etc/rules.ot \
+#    && sed -i -e '/RUNNER_USER=/d' $DDB_PATH/bin/ddb \
+#    && sed -i -e '/RUNNER_USER=/d' $DDB_PATH/bin/ddb-admin
+

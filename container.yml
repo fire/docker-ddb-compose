@@ -58,6 +58,7 @@ services:
     roles:
       - prepare
       - erlang
+      - db
     dev_overrides:
       environment:
         - "DEBUG=1"
@@ -66,6 +67,7 @@ services:
     roles:
       - prepare
       - erlang
+      - db
     dev_overrides:
       environment:
         - "DEBUG=1"
