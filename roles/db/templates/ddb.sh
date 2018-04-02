@@ -8,7 +8,7 @@ cat >&2 <<-'EOWARN'
 	****************************************************
 EOWARN
 
-CONF=/data/dalmatinerdb/etc/dalmatinerdb.conf
+CONF=/data/dalmatinerdb/etc/ddb.conf
 
 export HOST=$(ping -c1 $HOSTNAME | awk '/^PING/ {print $3}' | sed 's/[():]//g')||'127.0.0.1'
 

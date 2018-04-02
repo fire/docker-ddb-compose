@@ -1,15 +1,51 @@
-- name: Import Erlang Solutions repo key
-  command: rpm --import https://packages.erlang-solutions.com/rpm/erlang_solutions.asc
-- name: Add Erlang Solutions repository
+- yum:
+    name: git
+    state: latest
+- yum:
+    name: automake
+    state: latest
+- yum:
+    name: autoconf
+    state: latest
+- yum:
+    name: readline-devel
+    state: latest
+- yum:
+    name: ncurses-devel
+    state: latest
+- yum:
+    name: openssl-devel
+    state: latest
+- yum:
+    name: libyaml-devel
+    state: latest
+- yum:
+    name: libxslt-devel
+    state: latest
+- yum:
+    name: libffi-devel
+    state: latest
+- yum:
+    name: libtool 
+    state: latest
+- yum:
+    name: unixODBC-devel
+    state: latest
+- name: "install asdf"
+  git:
+    repo: "https://github.com/asdf-vm/asdf.git"
+    dest: "/root/.asdf"
+    update: yes
+- name: "source asdf script"
   template:
-    src: templates/erlang.repo.j2
-    dest: /etc/yum.repos.d/erlang.repo
-    owner: root
-    group: root
-    mode: 0644
-    force: yes
-- name: Install Erlang Solutions packages
-  yum:
-    name: "erlang"
-    state: present
-    update_cache: yes
+    src: "asdf.sh.j2"
+    dest: "/etc/profile.d/asdf.sh"
+    owner: "root"
+    group: "root"
+    mode: 0755
+- name: "install elixir plugin"
+  command: "bash -lc 'asdf plugin-add erlang || true'"
+- name: "install apps"
+  command: "bash -lc 'asdf install erlang 19.3.6.7'"
+- name: "set global app versions"
+  command: "bash -lc 'asdf global erlang 19.3.6.7'"

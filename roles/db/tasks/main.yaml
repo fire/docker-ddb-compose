@@ -1,33 +1,59 @@
-- apt:
+- name: Install build deps
+  yum:
     name: git
     state: latest
-- apt:
+- name: Install build deps
+  yum:
     name: glibc-devel
     state: latest
-- apt:
+- name: Install build deps
+  yum:
     name: glibc-devel
     state: latest
-- command: apt install -y build-essentials
+- name: Install build deps
+  command: yum groupinstall -y "Development tools"
+- name: Install build deps
+  yum:
+    name: centos-release-scl
+    state: latest
+- name: Install build deps
+  yum:
+    name: devtoolset-7-gcc*
+    state: latest
+- name: Install build deps
+  command: scl enable devtoolset-7 bash
 - name: Checkout ddb
   git:
     repo: 'https://github.com/dalmatinerdb/dalmatinerdb.git'
     dest: /usr/local/src/dalmatinerdb
-    version: dev
-- command: cd /usr/local/src/dalmatinerdb && ./rebar3 as smartos release && make
-- command: mkdir -p /dalmatinerdb
-- command: mv /usr/local/src/dalmatinerdb/_build/smartos/rel/ddb /dalmatinerdb/
+    version: 0.3.4p1
+- command: ./rebar3 as smartos release
+  args:
+    chdir: /usr/local/src/dalmatinerdb
+- file:
+    path: /dalmatinerdb
+    state: absent
+- command: mv /usr/local/src/dalmatinerdb/_build/smartos/rel/ddb/ /dalmatinerdb/
 - command: rm -rf /usr/local/src/dalmatinerdb && rm -rf ~/.hex
+- file:
+    path: /data/dalmatinerdb/etc/
+    state: directory
+    mode: 0755
+- file:
+    path: /data/dalmatinerdb/db/
+    state: directory
+    mode: 0755
+- file:
+    path: /data/dalmatinerdb/log/
+    state: directory
+    mode: 0755
 - template:
-    src: template/ddb.sh
+    src: templates/ddb.sh
     dest: /ddb.sh
     owner: root
     group: root
-    mode: 0644
-# create volume for /data/dalmatinerdb/etc
-# create volume for /data/dalmatinerdb/db
-# create volume for /data/dalmatinerdb/log
-# If not exist copy $DDB_PATH/etc/dalmatinerdb.conf /data/dalmatinerdb/etc/dalmatinerdb.conf \
-#    && echo "none() -> drop." > /data/dalmatinerdb/etc/rules.ot \
-#    && sed -i -e '/RUNNER_USER=/d' $DDB_PATH/bin/ddb \
-#    && sed -i -e '/RUNNER_USER=/d' $DDB_PATH/bin/ddb-admin
-
+    mode: 0755
+- command: echo "none() -> drop." > /data/dalmatinerdb/etc/rules.ot 
+- command: sed -i -e '/RUNNER_USER=/d' /dalmatinerdb/bin/ddb
+- command: sed -i -e '/RUNNER_USER=/d' /dalmatinerdb/bin/ddb-admin
+- copy: src=/dalmatinerdb/etc/ddb.conf dest=/data/dalmatinerdb/etc/ddb.conf force=no
